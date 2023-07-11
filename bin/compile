@@ -18,10 +18,7 @@ if [ "$TALIB" -eq "0" ]; then
 
 
  puts-step "Installing TA-Lib library source code custom version"
-  apt-get install -y make \
-    && apt install build-essential -y\
-    && apt-get install wget -y\
-    && wget http://prdownloads.sourceforge.net/ta-lib/ta-lib-0.4.0-src.tar.gz\
+    wget http://prdownloads.sourceforge.net/ta-lib/ta-lib-0.4.0-src.tar.gz\
     && tar -xzvf ta-lib-0.4.0-src.tar.gz\
     && cd ta-lib\
     && ./configure --prefix=/usr\
