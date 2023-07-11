@@ -8,7 +8,7 @@ puts-step "Installing python3"
 apt-get update && apt-get install gcc python3-dev python-dev -y \
 
 puts-step "Checking for TA Lib"
-TALIB=$(/app/.heroku/python/bin/python -c 'import pkgutil; print(1 if pkgutil.find_loader("talib") else 0)')
+TALIB=$(python3 -c 'import pkgutil; print(1 if pkgutil.find_loader("talib") else 0)')
 
 if [ "$TALIB" -eq "0" ]; then
   # PYTHON=$(ls /app/.heroku/python/include | grep -m 1 python)
