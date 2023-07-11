@@ -17,14 +17,26 @@ if [ "$TALIB" -eq "0" ]; then
   # /app/.heroku/python/bin/pip install -r requirements.txt 2>&1 | cleanup | indent
 
 
- puts-step "Installing TA-Lib library source code custom version"
-    wget http://prdownloads.sourceforge.net/ta-lib/ta-lib-0.4.0-src.tar.gz\
-    && tar -xzvf ta-lib-0.4.0-src.tar.gz\
-    && cd ta-lib\
-    && ./configure --prefix=/usr\
-    && make \
-    && make install
+#  puts-step "Installing TA-Lib library source code custom version"
+#     wget http://prdownloads.sourceforge.net/ta-lib/ta-lib-0.4.0-src.tar.gz\
+#     && tar -xzvf ta-lib-0.4.0-src.tar.gz\
+#     && cd ta-lib\
+#     && ./configure --prefix=/usr\
+#     && make \
+#     && make install
 
+
+  puts-step "Installing TA-Lib library source code"
+  echo "Download & unpack..." | indent
+  wget -q http://prdownloads.sourceforge.net/ta-lib/ta-lib-0.4.0-src.tar.gz > /dev/null 2>&1
+  tar -xf ta-lib-0.4.0-src.tar.gz  && cd ta-lib > /dev/null 2>&1
+  echo "Compile..." | indent
+  ./configure --prefix=/usr\
+  # ./configure --includedir=/app/.heroku/python/include/${PYTHON} --libdir=/app/.heroku/python/lib --bindir=/app/.heroku/python/bin > /dev/null 2>&1
+  make > /dev/null 2>&1
+  echo "Install..." | indent
+  make install > /dev/null 2>&1
+  echo "TA-Lib library successfully installed" | indent
 
 
 
